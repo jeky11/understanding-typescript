@@ -6,3 +6,5 @@ https://www.udemy.com/course/understanding-typescript
 - tsconfig Docs: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 - Compiler Config Docs: https://www.typescriptlang.org/docs/handbook/compiler-options.html
 - TS Debugging: https://www.jetbrains.com/help/rider/Running_and_Debugging_TypeScript.html
+- More on (JS) Classes: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+- More on TS Interfaces: https://www.typescriptlang.org/docs/handbook/2/objects.html
