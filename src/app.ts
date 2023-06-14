@@ -1,4 +1,39 @@
-﻿// Validation
+﻿// Project State Management
+class ProjectState {
+    private projects: any[] = [];
+    private listeners: any[] = [];
+    private static instance: ProjectState;
+
+    private constructor() {
+    }
+
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new ProjectState();
+        }
+        return this.instance;
+    }
+
+    addProject(title: string, description: string, numOfPeople: number) {
+        const newProject = {
+            id: Math.random().toString(),
+            title: title,
+            description: description,
+            people: numOfPeople
+        };
+        this.projects.push(newProject);
+
+        for (const listenerFn of this.listeners) {
+            listenerFn(this.projects.slice());
+        }
+    }
+
+    addListener(listenerFn: Function) {
+        this.listeners.push(listenerFn);
+    }
+}
+
+// Validation
 interface Validatable {
     value: string | number;
     required?: boolean;
@@ -54,6 +89,7 @@ class ProjectList {
     private templateElement: HTMLTemplateElement;
     private hostElement: HTMLDivElement;
     private element: HTMLElement;
+    private assignedProjects: any[] = [];
 
     constructor(private type: 'active' | 'finished') {
         this.templateElement = document.getElementById('project-list')! as HTMLTemplateElement;
@@ -63,12 +99,26 @@ class ProjectList {
         this.element = importedNode.firstElementChild as HTMLElement;
         this.element.id = `${type}-projects`;
 
+        projectState.addListener((projects: any[]) => {
+            this.assignedProjects = projects;
+            this.renderProjects();
+        });
+
         this.attach();
         this.renderContent();
     }
 
+    private renderProjects() {
+        const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+        for (const prjItem of this.assignedProjects) {
+            const listItem = document.createElement('li');
+            listItem.textContent = prjItem.title;
+            listEl.appendChild(listItem);
+        }
+    }
+
     private renderContent() {
-        this.element.querySelector('ul')!.id = `${this.type}-project-list`;
+        this.element.querySelector('ul')!.id = `${this.type}-projects-list`;
         this.element.querySelector('h2')!.textContent = this.type.toUpperCase() + ' PROJECTS';
 
     }
@@ -130,7 +180,7 @@ class ProjectInput {
             alert('Invalid input, please try again!');
             return;
         } else {
-            return [enteredTitle, enteredDescription, +enteredTitle];
+            return [enteredTitle, enteredDescription, +enteredPeople];
         }
     }
 
@@ -146,7 +196,7 @@ class ProjectInput {
         const userInput = this.gatherUserInput();
         if (Array.isArray(userInput)) {
             const [title, description, people] = userInput;
-
+            projectState.addProject(title, description, people);
             this.clearInputs();
         }
     }
@@ -160,6 +210,7 @@ class ProjectInput {
     }
 }
 
+const projectState = ProjectState.getInstance();
 const prjInput = new ProjectInput();
 const activePrjList = new ProjectList('active');
 const finishedPrjList = new ProjectList('finished');
