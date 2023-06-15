@@ -1,5 +1,5 @@
 // autobind decorator
-export function autobind(_, _2, descriptor) {
+export default function autobind(_, _2, descriptor) {
     const originalMethod = descriptor.value;
     const adjDescriptor = {
         configurable: true,

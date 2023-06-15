@@ -1,5 +1,5 @@
 ﻿// Component Base Class
-export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
+export default abstract class Component<T extends HTMLElement, U extends HTMLElement> {
     private templateElement: HTMLTemplateElement;
     private hostElement: T;
     protected element: U;

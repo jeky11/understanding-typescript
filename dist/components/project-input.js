@@ -5,11 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ProjectInput Class
-import { Component } from "./base-component.js";
+import Component from "./base-component.js";
 import { validate } from "../util/validation.js";
-import { autobind } from "../decorators/autobind.js";
+import autobind from "../decorators/autobind.js";
 import { projectState } from "../state/project-state.js";
-export class ProjectInput extends Component {
+export default class ProjectInput extends Component {
     constructor() {
         super('project-input', 'app', true, 'user-input');
         this.titleInputElement = this.element.querySelector('#title');
