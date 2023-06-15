@@ -1,5 +1,5 @@
-﻿import {ProjectList} from "./components/project-list";
-import {ProjectInput} from "./components/project-input";
+﻿import {ProjectInput} from "./components/project-input.js";
+import {ProjectList} from "./components/project-list.js";
 
 const prjInput = new ProjectInput();
 const activePrjList = new ProjectList('active');
