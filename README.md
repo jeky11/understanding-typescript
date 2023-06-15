@@ -11,3 +11,4 @@ https://www.udemy.com/course/understanding-typescript
 - Types: https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
 - Generics: https://www.typescriptlang.org/docs/handbook/generics.html
 - More on Decorators: https://www.typescriptlang.org/docs/handbook/decorators.html
+- More on Drag & Drop: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
