@@ -13,3 +13,4 @@ https://www.udemy.com/course/understanding-typescript
 - More on Decorators: https://www.typescriptlang.org/docs/handbook/decorators.html
 - More on Drag & Drop: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
 - More on ES Modules: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+- Official Webpack Docs: https://webpack.js.org/
